@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:41:30 by istili            #+#    #+#             */
-/*   Updated: 2024/09/19 01:56:05 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/20 00:31:17 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ static void	looop(t_link *linkedlist, char **av, int *status)
 	char	*val;
 	int		flag;
 
-	i = 1;
+	i = -1;
 	key = NULL;
 	val = NULL;
 	*status = 0;
-	while (av[i])
+	while (av[++i])
 	{
 		flag = 0;
 		if (check_arg(av[i]) == 1)
@@ -94,7 +94,6 @@ static void	looop(t_link *linkedlist, char **av, int *status)
 		key = find_key(av[i], &flag);
 		val = find_value(av[i]);
 		replace(linkedlist, key, val, flag);
-		i++;
 	}
 }
 
