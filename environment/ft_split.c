@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfiqar <hfiqar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:01:26 by istili            #+#    #+#             */
-/*   Updated: 2024/07/31 12:17:04 by hfiqar           ###   ########.fr       */
+/*   Updated: 2024/09/20 00:13:23 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	error(char *s)
+void	error(char *s, t_cmds *cmd)
 {
 	if (s)
 		write(2, s, ft_strlen(s));
+	if (cmd)
+		close_fd(cmd);
 	ft_malloc_gab(0, 1);
 	exit(1);
 }

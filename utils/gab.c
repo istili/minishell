@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gab.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfiqar <hfiqar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 22:21:38 by istili            #+#    #+#             */
-/*   Updated: 2024/08/23 11:42:26 by hfiqar           ###   ########.fr       */
+/*   Updated: 2024/09/20 00:15:19 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	add_gab(void *ptr, t_list *som)
 
 	node = malloc(sizeof(t_node));
 	if (!node)
-		error(MALLOC);
+		error(MALLOC, 0);
 	node->next = NULL;
 	node->ptr = ptr;
 	if (!som->head)
@@ -61,7 +61,7 @@ void	*ft_malloc_gab(size_t size, int flag)
 	}
 	p = malloc(size);
 	if (!p)
-		error(MALLOC);
+		error(MALLOC, 0);
 	add_gab(p, &som);
 	return (p);
 }

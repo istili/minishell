@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:11:28 by istili            #+#    #+#             */
-/*   Updated: 2024/09/19 01:56:10 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/20 00:20:57 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void	ft_dup(t_cmds *cmd, t_link *envp)
 	if (cmd->herdoc != 0 && heredoc_is_last(cmd))
 		cmd->fd_in = cmd->herdoc;
 	if (dup2(cmd->fd_in, 0) == -1)
-		error(DUP2);
+		error(DUP2, cmd);
 	close(envp->fd[0]);
 	if (dup2(envp->fd[1], 1) == -1)
-		error(DUP2);
+		error(DUP2, cmd);
 	close(envp->fd[1]);
 	if (dup2(cmd->fd_out, 1) == -1)
-		error(DUP2);
+		error(DUP2, cmd);
 }
 
 static void	execute_one_cmd(t_cmds *cmd, char **env, pid_t id, t_link *envp)
@@ -34,7 +34,7 @@ static void	execute_one_cmd(t_cmds *cmd, char **env, pid_t id, t_link *envp)
 	if (id != 0 && envp->pipe != 0)
 	{
 		if (dup2(0, envp->fd[0]) == -1)
-			error(DUP2);
+			error(DUP2, cmd);
 		close(envp->fd[0]);
 	}
 	if (id == 0)
@@ -74,11 +74,11 @@ static void	child(char **env, t_cmds *cmd, t_link *envp)
 	}
 }
 
-static void	parent(t_link *envp)
+static void	parent(t_link *envp, t_cmds *cmd)
 {
 	close(envp->fd[1]);
 	if (dup2(envp->fd[0], STDIN_FILENO) == -1)
-		error(DUP2);
+		error(DUP2, cmd);
 	close(envp->fd[0]);
 }
 
@@ -88,14 +88,11 @@ void	executing(t_cmds *cmd, char **env, t_link *envp)
 
 	id = fork();
 	if (id == -1)
-	{
-		close_fd(cmd);
-		error(FORK);
-	}
+		error(FORK, cmd);
 	if ((envp)->pipe_indx == 1)
 	{
 		if (id != 0)
-			parent(envp);
+			parent(envp, cmd);
 		else if (id == 0)
 			child(env, cmd, envp);
 	}

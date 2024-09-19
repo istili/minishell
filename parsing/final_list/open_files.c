@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 08:45:03 by hfiqar            #+#    #+#             */
-/*   Updated: 2024/09/19 00:06:31 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/20 00:22:26 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_red_out(t_cmds *command, int *print_flag)
 	else
 		name = ft_file_name(command->next);
 	command->fd = open(name, O_RDWR | O_CREAT | O_TRUNC, 0644);
-	if (command->fd == -1 && !*print_flag)
+	if (command->fd == -1 && !*print_flag && !herdoc_c_signal(0, 0))
 	{
 		*print_flag = 1;
 		perror("");
@@ -56,7 +56,7 @@ int	ft_append(t_cmds *command, int *print_flag)
 	else
 		name = ft_file_name(command->next);
 	command->fd = open(name, O_RDWR | O_CREAT | O_APPEND, 0644);
-	if (command->fd == -1 && !print_flag)
+	if (command->fd == -1 && !print_flag && !herdoc_c_signal(0, 0))
 	{
 		*print_flag = 1;
 		perror("");
@@ -75,7 +75,7 @@ int	ft_red_in(t_cmds *command, int *print_flag)
 	else
 		name = ft_file_name(command->next);
 	command->fd = open(name, O_RDONLY, 0644);
-	if (command->fd == -1 && !*print_flag)
+	if (command->fd == -1 && !*print_flag && !herdoc_c_signal(0, 0))
 	{
 		*print_flag = 1;
 		perror("");

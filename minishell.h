@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 10:25:27 by hfiqar            #+#    #+#             */
-/*   Updated: 2024/09/18 23:34:28 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/20 00:13:40 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ char			*ft_itoa(int n);
 
 char			*find_home_path(t_link *envp);
 int				exit_status(int new_status, int flag);
-void			error(char *s);
+void			error(char *s, t_cmds *cmd);
 int				check_arg(char *av);
 char			*find_key(char *s, int *flag);
 void			updatenv(t_link *link, char *key, char *val);

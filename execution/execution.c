@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 21:55:59 by istili            #+#    #+#             */
-/*   Updated: 2024/09/19 01:56:28 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/20 00:21:39 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	one_cmd_child(t_cmds *cmd, t_link *envp, char **env, int *status)
 	if (cmd->herdoc != 0 && heredoc_is_last(cmd))
 		cmd->fd_in = cmd->herdoc;
 	if (dup2(cmd->fd_in, 0) == -1)
-		error(DUP2);
+		error(DUP2, cmd);
 	if (dup2(cmd->fd_out, 1) == -1)
-		error(DUP2);
+		error(DUP2, cmd);
 	if (envp->builtin_indx == 1)
 	{
 		builtins(cmd, envp);
@@ -28,7 +28,6 @@ void	one_cmd_child(t_cmds *cmd, t_link *envp, char **env, int *status)
 	}
 	if (execve(cmd->data[0], cmd->data, env) == -1)
 	{
-		// perror("");
 		if ((ft_strchr(cmd->data[0], '/') && \
 		access(cmd->data[0], F_OK)) || cmd->data[0] == NULL)
 			write(2, "no such file or directory\n", 26);
@@ -68,10 +67,7 @@ static void	pipex(t_link *envp, t_cmds *cmd)
 	if (envp->pipe_indx == 1)
 	{
 		if (pipe((envp)->fd) == -1)
-		{
-			close_fd(cmd);
-			error(PIPE);
-		}
+			error(PIPE, cmd);
 	}
 	executing(cmd, env, envp);
 }
