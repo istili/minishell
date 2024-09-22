@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfiqar <hfiqar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 10:38:30 by hfiqar            #+#    #+#             */
-/*   Updated: 2024/09/14 16:01:14 by hfiqar           ###   ########.fr       */
+/*   Updated: 2024/09/22 20:51:15 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,19 @@ bool	is_character(int c)
 	if (!(is_quote(c)) && !(is_separator(c)) && !(is_space(c)))
 		return (true);
 	return (false);
+}
+
+int	full_space(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!ft_strcmp(s, " ") || !ft_strcmp(s, "\t"))
+			i++;
+		else
+			return (0);
+	}
+	return (1);
 }

@@ -6,16 +6,16 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 02:22:19 by hfiqar            #+#    #+#             */
-/*   Updated: 2024/09/19 00:57:41 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/22 21:01:44 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	f(void)
-{
-	system("leaks minishell");
-}
+// void	f(void)
+// {
+// 	system("leaks minishell");
+// }
 
 char	*read_line_call(void)
 {
@@ -29,7 +29,8 @@ char	*read_line_call(void)
 	}
 	if (line[0] == '\0')
 		return (NULL);
-	add_history(line);
+	if (!full_space(line))
+		add_history(line);
 	if (!line)
 		return (NULL);
 	return (line);

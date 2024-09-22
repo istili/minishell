@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 21:55:59 by istili            #+#    #+#             */
-/*   Updated: 2024/09/20 00:21:39 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/22 22:59:37 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	pipex(t_link *envp, t_cmds *cmd)
 	}
 	if (envp->pipe_indx == 1)
 	{
-		if (pipe((envp)->fd) == -1)
+		if (pipe(envp->fd) == -1)
 			error(PIPE, cmd);
 	}
 	executing(cmd, env, envp);

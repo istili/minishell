@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:11:28 by istili            #+#    #+#             */
-/*   Updated: 2024/09/20 00:20:57 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/22 23:12:26 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	child(char **env, t_cmds *cmd, t_link *envp)
 static void	parent(t_link *envp, t_cmds *cmd)
 {
 	close(envp->fd[1]);
-	if (dup2(envp->fd[0], STDIN_FILENO) == -1)
+	if (dup2(envp->fd[0], 0) == -1)
 		error(DUP2, cmd);
 	close(envp->fd[0]);
 }
@@ -89,7 +89,7 @@ void	executing(t_cmds *cmd, char **env, t_link *envp)
 	id = fork();
 	if (id == -1)
 		error(FORK, cmd);
-	if ((envp)->pipe_indx == 1)
+	if (envp->pipe_indx == 1)
 	{
 		if (id != 0)
 			parent(envp, cmd);

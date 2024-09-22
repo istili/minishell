@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 10:25:27 by hfiqar            #+#    #+#             */
-/*   Updated: 2024/09/20 00:13:40 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/22 23:16:27 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <term.h>
-# include <string.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <limits.h>
 # include <sys/stat.h>
 # include <errno.h>
 # include <signal.h>
@@ -227,7 +225,7 @@ void			f_exit(t_link *envp, char **av);
 void			f_export(t_link *linkedlist, char **av, int exp);
 void			f_env(t_link *linkedlist);
 
-char			**ft_split(char *str, char c);
+char			**ft_split(char *str, char c, char c1);
 int				ft_strlen(const char *s);
 char			*ft_substr(char *s, unsigned int start, size_t len);
 char			*ft_strdup_del(void	*dir);
@@ -284,6 +282,7 @@ int				ft_writ(char c);
 int				rideracting(t_cmds *cmd);
 void			executing(t_cmds *cmd, char **env, t_link *envp);
 void			close_fd(t_cmds *cmd);
+int				full_space(char *s);
 void			one_cmd_child(t_cmds *cmd, t_link *envp, char **env \
 	, int *status);
 

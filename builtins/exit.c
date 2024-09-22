@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 22:10:11 by istili            #+#    #+#             */
-/*   Updated: 2024/09/16 21:53:27 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/22 22:12:57 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	handle_exit_error(char **av, t_link *envp)
 		ft_malloc_gab(0, 1);
 		exit(255);
 	}
-	if (av[1] && av[2])
+	if (av[1] && av[2] && !is_number(av[1]))
 	{
 		if (!envp->pipe)
 			write(2, "exit\n", 5);
@@ -54,12 +54,6 @@ void	f_exit(t_link *envp, char **av)
 	int	status;
 
 	status = 0;
-	if (!av)
-	{
-		write(2, "exit\n", 5);
-		ft_malloc_gab(0, 1);
-		exit(1);
-	}
 	if (av[1] == 0)
 	{
 		if (!envp->pipe)

@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 15:09:08 by hfiqar            #+#    #+#             */
-/*   Updated: 2024/09/17 02:34:59 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/22 21:07:50 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	expd_space(char *data, t_token **last, t_link *envp)
 
 	i = 0;
 	data = check_for_file(data);
-	split = ft_split(data, ' ');
+	split = ft_split(data, ' ', '\t');
 	if (!split[0])
 		return ;
 	len = ft_strlen(split[0]) + envp->j + 1;

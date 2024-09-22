@@ -6,7 +6,7 @@
 #    By: istili <istili@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/04 16:05:43 by hfiqar            #+#    #+#              #
-#    Updated: 2024/09/17 02:37:30 by istili           ###   ########.fr        #
+#    Updated: 2024/09/22 23:32:34 by istili           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ SRC = parsing/tokenizer/characters.c \
 	main.c \
 	main_exec.c \
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LFLAGS = -L$(shell brew --prefix readline)/lib
 

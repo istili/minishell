@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 22:37:20 by istili            #+#    #+#             */
-/*   Updated: 2024/09/18 23:29:04 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/22 22:18:31 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	find_red_out(t_cmds *cmds)
 
 	fd = 1;
 	flag = 0;
-	cmds->red_type = 0;
 	while (cmds->next && cmds->next->type != Pipe)
 		cmds = cmds->next;
 	while (cmds && cmds->type != Pipe)
