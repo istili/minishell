@@ -6,16 +6,16 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 02:22:19 by hfiqar            #+#    #+#             */
-/*   Updated: 2024/09/22 21:01:44 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/23 00:05:24 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// void	f(void)
-// {
-// 	system("leaks minishell");
-// }
+void	f(void)
+{
+	system("leaks minishell");
+}
 
 char	*read_line_call(void)
 {
@@ -67,6 +67,7 @@ int	main(int ac, char **av, char **env)
 	t_link	*envp;
 	t_exc	fd;
 
+	// atexit(f);
 	(void)ac;
 	(void)av;
 	fd.zero = dup(0);

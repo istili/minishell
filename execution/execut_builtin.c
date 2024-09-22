@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 23:44:58 by istili            #+#    #+#             */
-/*   Updated: 2024/09/22 22:58:25 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/23 00:53:25 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ int	is_not_builtin(t_cmds *cmd)
 
 int	rideracting(t_cmds *cmd)
 {
-	cmd->fd_out = find_red_out(cmd);
-	cmd->fd_in = find_red_in(cmd);
-	cmd->herdoc = find_herdoc(cmd);
 	if ((cmd->type == HEREDOC || cmd->type == APPEND
 			|| cmd->type == REDIRECT_IN || cmd->type == REDIRECT_OUT)
 		|| (cmd->fd_in == -1 || cmd->fd_out == -1 || cmd->herdoc == -1)

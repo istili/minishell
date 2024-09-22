@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:11:28 by istili            #+#    #+#             */
-/*   Updated: 2024/09/22 23:12:26 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/23 00:53:15 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	ft_dup(t_cmds *cmd, t_link *envp)
 {
 	if (cmd->herdoc != 0 && heredoc_is_last(cmd))
 		cmd->fd_in = cmd->herdoc;
+	printf("%d\n",cmd->fd_in);
 	if (dup2(cmd->fd_in, 0) == -1)
 		error(DUP2, cmd);
 	close(envp->fd[0]);
@@ -57,6 +58,8 @@ static void	child(char **env, t_cmds *cmd, t_link *envp)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
+	if (!rideracting(cmd))
+		exit(0);
 	ft_dup(cmd, envp);
 	if (envp->builtin_indx == 1)
 	{

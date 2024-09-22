@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 21:55:59 by istili            #+#    #+#             */
-/*   Updated: 2024/09/22 22:59:37 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/23 00:53:54 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	one_cmd_child(t_cmds *cmd, t_link *envp, char **env, int *status)
 {
+	if (!rideracting(cmd))
+		exit(*status);
 	if (cmd->herdoc != 0 && heredoc_is_last(cmd))
 		cmd->fd_in = cmd->herdoc;
 	if (dup2(cmd->fd_in, 0) == -1)
@@ -54,8 +56,6 @@ static void	pipex(t_link *envp, t_cmds *cmd)
 
 	env = link_to_arr(envp);
 	envp->builtin_indx = is_not_builtin(cmd);
-	if (!rideracting(cmd))
-		return ;
 	if (envp->builtin_indx == 0)
 	{
 		if (fill_cmd(cmd, env) == 1)
@@ -69,6 +69,9 @@ static void	pipex(t_link *envp, t_cmds *cmd)
 		if (pipe(envp->fd) == -1)
 			error(PIPE, cmd);
 	}
+	cmd->fd_out = find_red_out(cmd);
+	cmd->fd_in = find_red_in(cmd);
+	cmd->herdoc = find_herdoc(cmd);
 	executing(cmd, env, envp);
 }
 

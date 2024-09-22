@@ -6,15 +6,26 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 11:06:01 by hfiqar            #+#    #+#             */
-/*   Updated: 2024/09/22 23:30:47 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/23 00:21:23 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+int	is_args(t_token *token)
+{
+	while (token && token->type != Pipe)
+	{
+		if (token->type == ARG)
+			return (1);
+		token = token->next;
+	}
+	return (0);
+}
+
 int	file_arg(t_token *token)
 {
-	while (token)
+	while (token && token->type != Pipe)
 	{
 		if (token->type == file && token->next && token->next->type == ARG)
 			return (1);
@@ -25,10 +36,7 @@ int	file_arg(t_token *token)
 
 void	special_case(t_token **token)
 {
-	printf("data : %s\n", (*token)->content);
-	if (ft_red(*token) && !file_arg(*token))
-		check_for_cmd_red_args(token);
-	else if (file_arg(*token))
+	if ((ft_red(*token) && is_args(*token)) || file_arg(*token))
 		check_for_cmd_red_args(token);
 }
 
