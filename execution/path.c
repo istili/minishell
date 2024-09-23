@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 16:52:37 by istili            #+#    #+#             */
-/*   Updated: 2024/09/22 22:51:40 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/23 21:29:59 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,5 @@ int	fill_cmd(t_cmds *cmds, char **env)
 		write(2, " :Permission denied\n", 20);
 		return (exit_status(126, 1), 1);
 	}
-	return (exit_status(0, 1), 0);
+	return (0);
 }

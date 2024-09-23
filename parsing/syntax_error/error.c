@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfiqar <hfiqar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 23:43:24 by hfiqar            #+#    #+#             */
-/*   Updated: 2024/09/15 11:59:03 by hfiqar           ###   ########.fr       */
+/*   Updated: 2024/09/23 22:22:31 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_for_pipe(t_token	*token)
 	t_token	*head;
 
 	head = token;
-	if (head->type == Pipe)
+	if (head && head->type == Pipe)
 	{
 		error_pipe();
 		return (-1);

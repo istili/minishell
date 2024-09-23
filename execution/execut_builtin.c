@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 23:44:58 by istili            #+#    #+#             */
-/*   Updated: 2024/09/23 00:53:25 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/23 21:19:13 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ int	rideracting(t_cmds *cmd)
 		|| (cmd->fd_in == -1 || cmd->fd_out == -1 || cmd->herdoc == -1)
 		|| (herdoc_c_signal(0, 0)))
 	{
-		if (herdoc_c_signal(0, 0))
-			exit_status(1, 1);
 		close_fd(cmd);
 		return (0);
 	}

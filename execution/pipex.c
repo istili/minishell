@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:11:28 by istili            #+#    #+#             */
-/*   Updated: 2024/09/23 00:53:15 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/23 21:28:01 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@ static void	ft_dup(t_cmds *cmd, t_link *envp)
 {
 	if (cmd->herdoc != 0 && heredoc_is_last(cmd))
 		cmd->fd_in = cmd->herdoc;
-	printf("%d\n",cmd->fd_in);
-	if (dup2(cmd->fd_in, 0) == -1)
+	if (cmd->fd_in != 0 && dup2(cmd->fd_in, 0) == -1)
 		error(DUP2, cmd);
 	close(envp->fd[0]);
-	if (dup2(envp->fd[1], 1) == -1)
+	if (envp->fd[0] != 1 && dup2(envp->fd[1], 1) == -1)
 		error(DUP2, cmd);
 	close(envp->fd[1]);
-	if (dup2(cmd->fd_out, 1) == -1)
+	if (cmd->fd_out != 1 && dup2(cmd->fd_out, 1) == -1)
 		error(DUP2, cmd);
 }
 
@@ -32,12 +31,6 @@ static void	execute_one_cmd(t_cmds *cmd, char **env, pid_t id, t_link *envp)
 	int		status;
 
 	status = exit_status(0, 0);
-	if (id != 0 && envp->pipe != 0)
-	{
-		if (dup2(0, envp->fd[0]) == -1)
-			error(DUP2, cmd);
-		close(envp->fd[0]);
-	}
 	if (id == 0)
 	{
 		signal(SIGINT, SIG_DFL);
@@ -80,7 +73,7 @@ static void	child(char **env, t_cmds *cmd, t_link *envp)
 static void	parent(t_link *envp, t_cmds *cmd)
 {
 	close(envp->fd[1]);
-	if (dup2(envp->fd[0], 0) == -1)
+	if (envp->fd[0] != 0 && dup2(envp->fd[0], 0) == -1)
 		error(DUP2, cmd);
 	close(envp->fd[0]);
 }

@@ -1,0 +1,33 @@
+my_bash-4.5$ export x="      <tab>   "
+my_bash-4.5$ $x
+command not found
+--------------------------------------
+my_bash-4.5$ $L $P $f
+[1]    5060 segmentation fault  ./minishell
+done .
+--------------------------------------
+my_bash-4.5$ cat | exit 200
+^C
+my_bash-4.5$ echo $?
+130
+--------------------------------------
+my_bash-4.5$ exit 4 55 33 55 4
+exit
+done .
+--------------------------------------
+declare -x x="a v"
+declare -x y="a v"
+my_bash-4.5$ export $x="yassine"
+my_bash: export: `a v=yassine: not a valid identifier
+--------------------------------------
+my_bash-4.5$ export x="ls -la"
+my_bash-4.5$ $x
+command not found
+my_bash-4.5$ $x
+command not found
+my_bash-4.5$ $x
+command not found
+my_bash-4.5$ echo $x
+ls -la
+my_bash-4.5$ 
+--------------------------------------

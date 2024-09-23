@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hfiqar <hfiqar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 14:52:46 by hfiqar            #+#    #+#             */
-/*   Updated: 2024/09/14 14:53:46 by hfiqar           ###   ########.fr       */
+/*   Updated: 2024/09/23 22:23:34 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	ft_strncmp(char *s1, char *s2, int n)
 
 bool	ft_red(t_token *token)
 {
-	if (token->type == REDIRECT_IN || \
+	if (token && (token->type == REDIRECT_IN || \
 	token->type == REDIRECT_OUT || \
 	token->type == APPEND || \
-	token->type == HEREDOC)
+	token->type == HEREDOC))
 		return (true);
 	return (false);
 }
