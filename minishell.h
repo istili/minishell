@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 10:25:27 by hfiqar            #+#    #+#             */
-/*   Updated: 2024/09/22 23:16:27 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/24 16:09:05 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ void			f_exit(t_link *envp, char **av);
 void			f_export(t_link *linkedlist, char **av, int exp);
 void			f_env(t_link *linkedlist);
 
-char			**ft_split(char *str, char c, char c1);
+char			**ft_split(char *str, char c);
 int				ft_strlen(const char *s);
 char			*ft_substr(char *s, unsigned int start, size_t len);
 char			*ft_strdup_del(void	*dir);

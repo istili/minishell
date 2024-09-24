@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 22:10:11 by istili            #+#    #+#             */
-/*   Updated: 2024/09/23 22:28:19 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/24 16:08:25 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	handle_exit_error(char **av, t_link *envp)
 			write(2, "exit\n", 5);
 		write(2, "my_bash: exit: too many arguments\n", 34);
 		exit_status(1, 1);
+		if (ft_atoi(av[1]) == -1)
+			exit(1);
 		return (1);
 	}
 	return (0);
