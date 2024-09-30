@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 22:37:20 by istili            #+#    #+#             */
-/*   Updated: 2024/09/22 22:18:31 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/24 20:40:24 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	find_red_in(t_cmds *cmds)
 		if (!flag && cmds->type == REDIRECT_IN)
 		{
 			flag = 1;
-			fd = cmds->fd;
+			if (cmds->fd != 0)
+				fd = cmds->fd;
 		}
 		cmds = cmds->prev;
 	}
@@ -74,7 +75,8 @@ int	find_red_out(t_cmds *cmds)
 		if (!flag && (cmds->type == REDIRECT_OUT || cmds->type == APPEND))
 		{
 			flag = 1;
-			fd = cmds->fd;
+			if (cmds->fd != 1)
+				fd = cmds->fd;
 		}
 		cmds = cmds->prev;
 	}

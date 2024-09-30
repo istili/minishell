@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 15:09:08 by hfiqar            #+#    #+#             */
-/*   Updated: 2024/09/24 16:18:52 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/24 17:57:12 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	char_expdr(t_token **last, char *line, int i, t_link *envp)
 			i++;
 		data = ft_replace(line, j, i, envp);
 		(*last)->exp = 1;
-		if ((ft_strchr(data, ' ') || \
-			ft_strchr(data, '\t'))	&& check_before(j, line) == 1)
+		if ((ft_strchr(data, ' ') || ft_strchr(data, '\t')) && \
+		check_before(j, line) == 1)
 			expd_space(data, last, envp);
 		else if (ft_nrml_exp(data, envp, last) == -1)
 			return (-1);
@@ -86,7 +86,7 @@ void	expd_space(char *data, t_token **last, t_link *envp)
 
 	i = 0;
 	data = check_for_file(data);
-	split = ft_split(data, ' ');
+	split = ft_split(data, ' ', '\t');
 	if (!split[0])
 		return ;
 	len = ft_strlen(split[0]) + envp->j + 1;

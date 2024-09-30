@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:11:28 by istili            #+#    #+#             */
-/*   Updated: 2024/09/24 16:12:23 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/24 20:25:45 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	child(char **env, t_cmds *cmd, t_link *envp)
 		access(cmd->data[0], F_OK) != 0) || cmd->data[0] == NULL)
 			write(2, "no such file or directory\n", 26);
 		else
-			write(2, "command not found\n", 19);
+			write(2, "command not found\n", 18);
 		exit(1);
 	}
 }

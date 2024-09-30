@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 20:48:28 by istili            #+#    #+#             */
-/*   Updated: 2024/09/13 21:36:22 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/24 17:19:01 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	setexit(int status, t_link *envp)
 			reset_terminal(envp);
 			printf("Quit: 3\n");
 		}
-		else
+		else if (WTERMSIG(status) == 2)
 			printf("\n");
 		exit_status(WTERMSIG(status) + 128, 1);
 	}

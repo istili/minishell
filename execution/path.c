@@ -6,7 +6,7 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 16:52:37 by istili            #+#    #+#             */
-/*   Updated: 2024/09/24 16:10:21 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/24 17:44:45 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	**find_path(char **env)
 	{
 		if (!ft_strncmp(env[i], "PATH=", 5))
 		{
-			splited_path = ft_split(env[i] + 5, ':');
+			splited_path = ft_split(env[i] + 5, ':', ':');
 			break ;
 		}
 		i++;

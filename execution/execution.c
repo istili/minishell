@@ -6,22 +6,27 @@
 /*   By: istili <istili@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 21:55:59 by istili            #+#    #+#             */
-/*   Updated: 2024/09/23 21:27:14 by istili           ###   ########.fr       */
+/*   Updated: 2024/09/24 20:54:07 by istili           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	one_cmd_child(t_cmds *cmd, t_link *envp, char **env, int *status)
+void	ft_duplast(t_cmds *cmd)
 {
-	if (!rideracting(cmd))
-		exit(*status);
 	if (cmd->herdoc != 0 && heredoc_is_last(cmd))
 		cmd->fd_in = cmd->herdoc;
 	if (cmd->fd_in != 0 && dup2(cmd->fd_in, 0) == -1)
 		error(DUP2, cmd);
 	if (cmd->fd_out != 1 && dup2(cmd->fd_out, 1) == -1)
 		error(DUP2, cmd);
+}
+
+void	one_cmd_child(t_cmds *cmd, t_link *envp, char **env, int *status)
+{
+	if (!rideracting(cmd))
+		exit(*status);
+	ft_duplast(cmd);
 	if (envp->builtin_indx == 1)
 	{
 		builtins(cmd, envp);
@@ -34,20 +39,12 @@ void	one_cmd_child(t_cmds *cmd, t_link *envp, char **env, int *status)
 		access(cmd->data[0], F_OK)) || cmd->data[0] == NULL)
 			write(2, "no such file or directory\n", 26);
 		else
-			write(2, "command not found\n", 19);
+		{
+			write(2, "command not found\n", 18);
+		}
 		*status = 127;
 		exit(*status);
 	}
-}
-
-void	close_fd(t_cmds *cmd)
-{
-	if (cmd->fd_in != 0)
-		close(cmd->fd_in);
-	if (cmd->fd_out != 1)
-		close(cmd->fd_out);
-	if (cmd->herdoc != 0)
-		close(cmd->herdoc);
 }
 
 static void	pipex(t_link *envp, t_cmds *cmd)
